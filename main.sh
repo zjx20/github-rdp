@@ -62,6 +62,8 @@ function install-chrome-headless() {
 
         # for ubuntu
         service dbus restart || true
+        # auto start the service after reboot
+        sudo update-rc.d chrome-remote-desktop defaults || true
     fi
 }
 
