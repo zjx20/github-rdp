@@ -47,7 +47,7 @@ function install-chrome-headless() {
     chrome_browser_local_path="/tmp/google-chrome-stable_current_amd64.deb"
     if { [ "${DISTRO}" == "ubuntu" ] || [ "${DISTRO}" == "debian" ]; }; then
         apt-get update
-        apt-get install xfce4 -y
+        apt-get install xfce4 dbus-x11 -y
         apt-get install desktop-base -y
         apt-get install task-xfce-desktop -y
         apt-get install xscreensaver -y
@@ -59,6 +59,9 @@ function install-chrome-headless() {
         dpkg --install ${chrome_browser_local_path}
         rm -f ${chrome_browser_local_path}
         apt-get install -f -y
+
+        # for ubuntu
+        service dbus restart || true
     fi
 }
 
